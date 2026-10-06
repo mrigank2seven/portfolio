@@ -10,8 +10,10 @@ export const profile = {
   headline: "Building Scalable Fintech Backends.",
   tagline:
     "Python/Django engineer with 4+ years designing lending, payments and AI-driven document pipelines for high-volume financial systems.",
-  summary:
-    "Results-driven Python/Django developer with 4+ years of experience designing and scaling backend systems, REST APIs and microservices for fintech payment and lending platforms. I automate financial workflows, optimize database performance and build high-volume distributed systems on AWS.",
+  aboutParagraphs: [
+    "I'm a Python/Django engineer with 4+ years of experience building backend systems, REST APIs and microservices for fintech lending and payment platforms on AWS.",
+    "In money-moving software a wrong number is a real loss, so I lean on precise decimal arithmetic, tracked job states and retries that are safe to repeat. Lately that has meant AI-driven document pipelines, database performance work and TOTP security across Django services.",
+  ],
 } as const;
 
 export const navSections = [
@@ -33,44 +35,47 @@ export const aboutStats: Stat[] = [
   { value: "6", label: "Systems integrated in lending workflows" },
 ];
 
-export type ExperienceGroup = { title: string; points: string[] };
+export type ExperienceGroup = { title: string; tags: string[]; points: string[] };
 
 export const experience = {
   company: "Progfin",
   place: "New Delhi",
   role: "Software Engineer II",
   period: "April 2022 – Present",
+  summary:
+    "Backend engineer on lending and payment platforms: AI document pipelines, credit workflows, admin security and portfolio analytics.",
   groups: [
     {
       title: "AI & Document Intelligence",
+      tags: ["Python", "OCR", "LLM", "Celery"],
       points: [
-        "Designed and built an end-to-end in-house OCR + LLM invoice-extraction pipeline with job-state management, retry/backoff, structured extraction and IRN/e-invoice compliance parsing, raising extraction success from 35% to 85%+ and reducing manual intervention.",
-        "Built Aadhaar document masking for PDF, JPEG and PNG using PDF redaction with OCR fallback, exposed through authenticated APIs with concurrent background processing.",
+        "Built an in-house OCR + LLM invoice-extraction pipeline with job states, retry/backoff and IRN/e-invoice parsing, raising extraction success from 35% to 85%+.",
+        "Built Aadhaar masking for PDF, JPEG and PNG using PDF redaction with OCR fallback, behind authenticated APIs.",
       ],
     },
     {
       title: "Lending & Financial Workflows",
+      tags: ["Django", "DRF", "Celery", "PostgreSQL", "SFTP", "PGP"],
       points: [
-        "Architected and developed a Pre-Approval Loan Eligibility system aggregating ERP data, manual ledgers, sales history, CIBIL, GSTIN and other parameters into a consolidated, data-driven credit assessment and lending decision workflow.",
-        "Architected cross-system financial workflows spanning LMS, LOS, ERP, UMS, LedgerParser and ElapDB, improving data consistency across invoice, lending, approval and financial-processing lifecycles.",
-        "Improved financial correctness across vendor-finance/co-lender interest posting, sanction-limit aggregation and fee calculations using precise decimal arithmetic.",
-        "Developed backend workflows and REST APIs using Python, Django, DRF, Celery and PostgreSQL for lending and financial operations across LMS, LOS and internal platforms.",
-        "Built lender-specific client and supplier onboarding workflows with data mapping, PGP-encrypted SFTP exchange and success/failure response reconciliation.",
+        "Architected Pre-Approval Loan Eligibility, combining ERP data, ledgers, sales history, CIBIL and GSTIN into one credit decision.",
+        "Connected LMS, LOS, ERP, UMS, LedgerParser and ElapDB so invoice, lending and approval data stay consistent, using precise decimal arithmetic for interest, limits and fees.",
+        "Built lender onboarding workflows with data mapping, PGP-encrypted SFTP exchange and response reconciliation.",
       ],
     },
     {
       title: "Security & Performance",
+      tags: ["Django", "TOTP", "PostgreSQL"],
       points: [
-        "Implemented TOTP-based privileged-admin authentication across 7 Django services, including encrypted secrets, recovery codes, lockout controls and automated authentication-flow testing.",
-        "Led PostgreSQL performance optimization across high-volume workflows by eliminating repeated database lookups, consolidating invoice-status aggregation and introducing concurrent index migrations.",
+        "Implemented TOTP admin authentication across 7 Django services with encrypted secrets, recovery codes, lockouts and automated tests.",
+        "Led PostgreSQL optimization: removed repeated lookups, consolidated invoice-status aggregation and added concurrent index migrations.",
       ],
     },
     {
       title: "Analytics & Risk",
+      tags: ["DRF", "PostgreSQL", "Analytics"],
       points: [
-        "Developed portfolio analytics APIs covering distributor performance, portfolio growth, management summaries, company drill-downs and industry/brand productivity, including AUM, utilization and delinquency metrics.",
-        "Performed fraud analytics to identify suspicious borrower relationships and repeat applications, building a deduplication framework using Business PAN, CIBIL history and historical relationships with the organization.",
-        "Applied statistical analysis and business-rule modeling to identify risk patterns, assess borrower creditworthiness and improve fraud detection and underwriting accuracy.",
+        "Built portfolio analytics APIs for distributor performance, growth, company drill-downs and AUM, utilization and delinquency.",
+        "Built a fraud and deduplication framework using Business PAN, CIBIL history and past relationships, applying statistical analysis and business rules to improve underwriting accuracy.",
       ],
     },
   ] satisfies ExperienceGroup[],
@@ -81,59 +86,45 @@ export type Project = {
   blurb: string;
   tags: string[];
   highlight?: string;
+  slug?: string;
 };
 
 export const projects: Project[] = [
   {
     title: "OCR + LLM Invoice Extraction",
     blurb:
-      "In-house pipeline with job-state management, retry/backoff, structured extraction and IRN/e-invoice compliance parsing.",
-    tags: ["Python", "OCR", "LLM", "Celery"],
+      "A job-driven pipeline that turns invoices into structured data with IRN/e-invoice checks, plus Aadhaar document masking built on the same OCR stack.",
+    tags: ["Python", "OCR", "LLM", "Celery", "PDF Redaction"],
     highlight: "35% → 85%+ success",
+    slug: "ocr-llm-invoice-extraction",
   },
   {
     title: "Pre-Approval Loan Eligibility",
     blurb:
-      "Aggregates ERP data, ledgers, sales history, CIBIL and GSTIN into one data-driven credit assessment and lending decision flow.",
+      "One data-driven credit assessment over ERP data, ledgers, sales history, CIBIL and GSTIN, ending in a single lending decision.",
     tags: ["Django", "PostgreSQL", "CIBIL", "GSTIN"],
-  },
-  {
-    title: "Cross-System Financial Workflows",
-    blurb:
-      "Consistent invoice, lending and approval lifecycles across LMS, LOS, ERP, UMS, LedgerParser and ElapDB.",
-    tags: ["Microservices", "DRF", "Celery"],
-    highlight: "6 systems",
+    slug: "pre-approval-loan-eligibility",
   },
   {
     title: "TOTP Admin Authentication",
     blurb:
-      "Privileged-admin 2FA with encrypted secrets, recovery codes, lockout controls and automated auth-flow tests.",
-    tags: ["Django", "Security", "TOTP"],
+      "Second-factor login for privileged admins across 7 Django services, with encrypted secrets, recovery codes and lockout controls.",
+    tags: ["Django", "TOTP", "Security"],
     highlight: "7 services",
+    slug: "totp-admin-authentication",
   },
   {
-    title: "Aadhaar Document Masking",
+    title: "Cross-System Financial Workflows",
     blurb:
-      "Masks PDF, JPEG and PNG documents via PDF redaction with OCR fallback, behind authenticated APIs and concurrent workers.",
-    tags: ["OCR", "Python", "Async"],
+      "Keeps invoice, lending and approval data consistent across LMS, LOS, ERP, UMS, LedgerParser and ElapDB, and onboards lenders over PGP-encrypted SFTP.",
+    tags: ["Microservices", "DRF", "Celery", "SFTP", "PGP"],
+    highlight: "6 systems",
   },
   {
-    title: "Lender Onboarding Integrations",
+    title: "Fraud & Portfolio Analytics",
     blurb:
-      "Lender-specific client and supplier onboarding with data mapping, PGP-encrypted SFTP exchange and response reconciliation.",
-    tags: ["SFTP", "PGP", "Reconciliation"],
-  },
-  {
-    title: "Portfolio Analytics APIs",
-    blurb:
-      "Distributor performance, portfolio growth, company drill-downs and industry/brand productivity with AUM, utilization and delinquency.",
-    tags: ["DRF", "PostgreSQL", "Analytics"],
-  },
-  {
-    title: "Fraud & Deduplication Framework",
-    blurb:
-      "Flags suspicious borrower relationships and repeat applications using Business PAN, CIBIL history and organizational history.",
-    tags: ["Data Analysis", "Risk", "Python"],
+      "Portfolio APIs for AUM, utilization and delinquency, alongside a deduplication framework that flags repeat applications and suspicious borrower relationships.",
+    tags: ["DRF", "PostgreSQL", "Analytics", "Risk"],
   },
   {
     title: "PostgreSQL Performance Tuning",
@@ -277,12 +268,29 @@ export const diagrams: Diagram[] = [
 export const skills: { group: string; items: string[] }[] = [
   { group: "Languages", items: ["Python", "Go", "SQL"] },
   { group: "Frameworks", items: ["Django", "Django REST Framework", "FastAPI", "Celery"] },
-  { group: "Data & Caching", items: ["PostgreSQL", "MySQL", "Redis"] },
-  { group: "Cloud & DevOps", items: ["AWS (EC2, S3)", "Docker", "CI/CD"] },
+  { group: "Data & Caching", items: ["PostgreSQL", "MySQL", "Redis", "DynamoDB", "Data Warehousing"] },
+  {
+    group: "Cloud & DevOps",
+    items: [
+      "AWS (EC2, S3)",
+      "Lambda",
+      "ECS",
+      "Glacier",
+      "SQS / SNS",
+      "Athena",
+      "AWS DMS",
+      "CloudWatch",
+      "SigNoz",
+      "Logging",
+      "Monitoring",
+      "Docker",
+      "CI/CD",
+    ],
+  },
   { group: "AI & Automation", items: ["OCR", "LLMs", "OpenAI API", "Async Processing"] },
   {
     group: "Engineering",
-    items: ["Microservices", "Distributed Systems", "System Design", "REST API Design", "Database Optimization"],
+    items: ["Microservices", "Event-Driven Architecture", "Distributed Systems", "System Design", "REST API Design", "Database Optimization"],
   },
   { group: "Tools", items: ["Git", "Jira", "Postman"] },
 ];
@@ -290,7 +298,11 @@ export const skills: { group: string; items: string[] }[] = [
 export const impact: Stat[] = [
   { value: "35% → 85%+", label: "OCR + LLM invoice extraction success" },
   { value: "7", label: "Django services with TOTP admin auth" },
-  { value: "TODO", label: "AUM / portfolio size managed", todo: true },
+  { value: "5 → 1", label: "Data sources (ERP, ledgers, sales, CIBIL, GSTIN) reduced to one lending decision" },
+  { value: "3", label: "Document formats (PDF, JPEG, PNG) covered by Aadhaar masking" },
+  { value: "₹250 Cr+", label: "Annual AUM Impact" },
+  { value: "99%", label: "System Availability" },
+  { value: "90%+", label: "Tickets Closed Within SLA" },
   { value: "TODO", label: "Payment or processing turnaround improvement", todo: true },
   { value: "TODO", label: "Query latency improvement from PostgreSQL tuning", todo: true },
 ];

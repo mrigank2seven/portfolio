@@ -1,0 +1,21 @@
+---
+title: "TOTP Admin Authentication"
+summary: "Second-factor login for privileged admins, rolled out across 7 Django services."
+stack: ["Django", "TOTP", "Security"]
+---
+
+## The Problem
+
+Privileged admin accounts can change money-moving data, and a password alone is a weak guard for them. The same protection had to cover every Django service, not just one.
+
+## The Approach
+
+After the password step, a lockout check stops repeated failures before codes can be brute-forced. The admin then enters a 6-digit time-based code, which is validated against their secret. TOTP secrets are stored encrypted, never in plaintext, and one-time recovery codes let admins back in if a device is lost. Access is granted only after the second factor passes.
+
+## My Contribution
+
+I implemented TOTP-based privileged-admin authentication across 7 Django services, including the encrypted secrets, recovery codes, lockout controls and automated authentication-flow tests.
+
+## The Outcome
+
+All 7 services now require a second factor for privileged admin access, and the authentication flow is covered by automated tests.

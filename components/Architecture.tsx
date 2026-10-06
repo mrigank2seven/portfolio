@@ -16,6 +16,9 @@ export default function Architecture() {
 
   return (
     <Section id="architecture" eyebrow="architecture" title="How the Systems Fit Together">
+      <p className="-mt-4 mb-6 max-w-2xl text-muted">
+        Simplified views of systems I&apos;ve built. Pick a diagram, then hover or tap a step to see what it does.
+      </p>
       <div role="tablist" aria-label="Architecture diagrams" className="flex flex-wrap gap-2">
         {diagrams.map((d) => (
           <button

@@ -1,0 +1,21 @@
+---
+title: "Pre-Approval Loan Eligibility"
+summary: "One credit assessment built from ERP data, manual ledgers, sales history, CIBIL and GSTIN."
+stack: ["Django", "PostgreSQL", "CIBIL", "GSTIN"]
+---
+
+## The Problem
+
+The signals behind a lending decision live in many places: ERP data, ledgers provided by hand, sales history, CIBIL and GSTIN. Each arrives in a different shape, and none of them is a decision on its own.
+
+## The Approach
+
+An aggregator normalizes and consolidates every source into one view. Business rules and statistical checks then score creditworthiness, and the result is a data-driven pre-approval outcome.
+
+## My Contribution
+
+I architected and developed the eligibility system, including the aggregation of ERP data, manual ledgers, sales history, CIBIL, GSTIN and other parameters into a single assessment and decision workflow.
+
+## The Outcome
+
+Lending decisions now come from a consolidated, data-driven credit assessment rather than from separate sources reviewed one at a time.

@@ -12,6 +12,9 @@ export default function Experience() {
               {experience.role} <span className="text-muted">@ {experience.company}</span>
             </h3>
             <p className="mt-1 text-sm text-muted">{experience.place}</p>
+            <p className="mt-3 max-w-2xl text-muted">
+              <Highlight text={experience.summary} />
+            </p>
           </div>
           <p className="font-mono text-sm text-accent">{experience.period}</p>
         </div>
@@ -31,6 +34,13 @@ export default function Experience() {
                   <li key={p} className="flex gap-3">
                     <span aria-hidden className="mt-2 size-1 shrink-0 rounded-full bg-muted" />
                     <span><Highlight text={p} /></span>
+                  </li>
+                ))}
+              </ul>
+              <ul className="mt-4 flex flex-wrap gap-1.5">
+                {g.tags.map((t) => (
+                  <li key={t} className="rounded border border-line px-2 py-0.5 font-mono text-[11px] text-muted">
+                    {t}
                   </li>
                 ))}
               </ul>

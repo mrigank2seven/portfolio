@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import { ArrowRight } from "lucide-react";
 import path from "node:path";
 import Image from "next/image";
 import { aboutStats, profile } from "@/content/site";
@@ -9,7 +10,7 @@ export default function About() {
   const hasPhoto = fs.existsSync(path.join(process.cwd(), "public", "profile.webp"));
 
   return (
-    <Section id="about" eyebrow="about" title="Backend Engineer for Money-Moving Systems">
+    <Section id="about" eyebrow="about" title="I Build Systems Where Accuracy Matters">
       <div className="grid gap-10 md:grid-cols-[auto_1fr] md:items-start">
         <Reveal>
           {hasPhoto ? (
@@ -30,7 +31,20 @@ export default function About() {
           )}
         </Reveal>
         <Reveal delay={0.1}>
-          <p className="text-lg leading-relaxed text-muted"><Highlight text={profile.summary} /></p>
+          <div className="space-y-4 text-lg leading-relaxed text-muted">
+            {profile.aboutParagraphs.map((text) => (
+              <p key={text}>
+                <Highlight text={text} />
+              </p>
+            ))}
+          </div>
+          <a
+            href="#experience"
+            className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-accent hover:underline"
+          >
+            See my journey
+            <ArrowRight className="size-4" />
+          </a>
         </Reveal>
       </div>
 
