@@ -4,9 +4,9 @@ import Image from "next/image";
 import { aboutStats, profile } from "@/content/site";
 import { Reveal, Section } from "./ui";
 
-const hasPhoto = fs.existsSync(path.join(process.cwd(), "public", "profile.jpg"));
-
 export default function About() {
+  const hasPhoto = fs.existsSync(path.join(process.cwd(), "public", "profile.jpg"));
+
   return (
     <Section id="about" eyebrow="about" title="Backend engineer for money-moving systems">
       <div className="grid gap-10 md:grid-cols-[auto_1fr] md:items-start">
