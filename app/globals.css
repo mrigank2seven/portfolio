@@ -66,10 +66,81 @@ body {
   mask-image: radial-gradient(ellipse at 50% 30%, #000 20%, transparent 70%);
 }
 
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 0.5s ease-out,
+      transform 0.5s ease-out;
+  }
+
+  .reveal[data-shown="true"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .post h2 {
   margin-top: 2rem;
   font-size: 1.4rem;
   font-weight: 600;
+}
+
+.post h3 {
+  margin-top: 1.5rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.post ol {
+  list-style: decimal;
+  padding-left: 1.25rem;
+}
+
+.post pre {
+  margin-top: 1rem;
+  overflow-x: auto;
+  padding: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.post pre code {
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+.post blockquote {
+  margin-top: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--accent);
+  color: var(--muted);
+}
+
+.post table {
+  margin-top: 1rem;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.post th,
+.post td {
+  border: 1px solid var(--line);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.post img {
+  margin-top: 1rem;
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
 }
 
 .post p,

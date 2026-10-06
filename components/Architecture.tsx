@@ -1,9 +1,13 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useState } from "react";
 import { diagrams } from "@/content/site";
-import FlowDiagram from "./FlowDiagram";
 import { Section } from "./ui";
+
+const FlowDiagram = dynamic(() => import("./FlowDiagram"), {
+  loading: () => <div aria-hidden className="aspect-[8/3] w-full" />,
+});
 
 export default function Architecture() {
   const [activeId, setActiveId] = useState(diagrams[0].id);

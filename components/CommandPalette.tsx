@@ -1,9 +1,10 @@
 "use client";
 
 import { Command } from "cmdk";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
 import { navSections, profile } from "@/content/site";
+import { usePalette } from "./PaletteContext";
 import { toggleTheme } from "./ThemeToggle";
 
 const itemClass =
@@ -19,7 +20,8 @@ function Item({ children, onSelect }: { children: ReactNode; onSelect: () => voi
 
 export default function CommandPalette() {
   const router = useRouter();
-  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const { open, setOpen } = usePalette();
   const [toast, setToast] = useState("");
 
   useEffect(() => {
@@ -29,14 +31,9 @@ export default function CommandPalette() {
         setOpen((o) => !o);
       }
     };
-    const onOpen = () => setOpen(true);
     window.addEventListener("keydown", onKey);
-    window.addEventListener("open-palette", onOpen);
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      window.removeEventListener("open-palette", onOpen);
-    };
-  }, []);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [setOpen]);
 
   useEffect(() => {
     if (!toast) return;
@@ -47,6 +44,15 @@ export default function CommandPalette() {
   const run = (fn: () => void | Promise<void>) => () => {
     setOpen(false);
     void fn();
+  };
+
+  const goTo = (id: string) => {
+    if (pathname === "/") {
+      document.getElementById(id)?.scrollIntoView();
+      window.history.pushState(null, "", `#${id}`);
+      return;
+    }
+    router.push(`/#${id}`);
   };
 
   const copyEmail = async () => {
@@ -80,7 +86,7 @@ export default function CommandPalette() {
             className="[&_[cmdk-group-heading]]:px-3 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:font-mono [&_[cmdk-group-heading]]:text-[11px] [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:text-muted"
           >
             {navSections.map((s) => (
-              <Item key={s.id} onSelect={run(() => router.push(`/#${s.id}`))}>
+              <Item key={s.id} onSelect={run(() => goTo(s.id))}>
                 {s.label}
               </Item>
             ))}

@@ -4,11 +4,12 @@ import { Menu, Search, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { navSections, profile } from "@/content/site";
-import CommandPalette from "./CommandPalette";
+import { usePalette } from "./PaletteContext";
 import ThemeToggle from "./ThemeToggle";
 
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { setOpen: setPaletteOpen } = usePalette();
 
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-bg/80 backdrop-blur">
@@ -33,7 +34,7 @@ export default function Nav() {
         <div className="flex items-center gap-2">
           <button
             type="button"
-            onClick={() => window.dispatchEvent(new Event("open-palette"))}
+            onClick={() => setPaletteOpen(true)}
             className="hidden items-center gap-2 rounded-md border border-line px-3 py-1.5 text-xs text-muted transition-colors hover:text-fg sm:flex"
           >
             <Search className="size-3.5" />
@@ -71,7 +72,7 @@ export default function Nav() {
               type="button"
               onClick={() => {
                 setMenuOpen(false);
-                window.dispatchEvent(new Event("open-palette"));
+                setPaletteOpen(true);
               }}
               className="block w-full py-2.5 text-left text-sm text-muted hover:text-fg"
             >
@@ -80,7 +81,6 @@ export default function Nav() {
           </li>
         </ul>
       )}
-      <CommandPalette />
     </header>
   );
 }

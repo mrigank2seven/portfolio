@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import { useState } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { useRef, useState } from "react";
 import type { Diagram } from "@/content/site";
 
 const NODE_W = 132;
@@ -9,6 +9,8 @@ const NODE_H = 40;
 
 export default function FlowDiagram({ diagram }: { diagram: Diagram }) {
   const reduce = useReducedMotion();
+  const svgRef = useRef<SVGSVGElement>(null);
+  const inView = useInView(svgRef);
   const [activeId, setActiveId] = useState(diagram.nodes[0].id);
   const byId = new Map(diagram.nodes.map((n) => [n.id, n]));
   const active = byId.get(activeId) ?? diagram.nodes[0];
@@ -16,6 +18,7 @@ export default function FlowDiagram({ diagram }: { diagram: Diagram }) {
   return (
     <div>
       <svg
+        ref={svgRef}
         viewBox="0 0 800 300"
         role="group"
         aria-label={diagram.title}
@@ -37,7 +40,7 @@ export default function FlowDiagram({ diagram }: { diagram: Diagram }) {
                 strokeDasharray="4 4"
                 className={isHot ? "stroke-accent" : "stroke-line"}
               />
-              {!reduce && (
+              {!reduce && inView && (
                 <motion.circle
                   r={3.5}
                   className="fill-accent"
