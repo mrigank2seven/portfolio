@@ -5,7 +5,7 @@ import { aboutStats, profile } from "@/content/site";
 import { Reveal, Section } from "./ui";
 
 export default function About() {
-  const hasPhoto = fs.existsSync(path.join(process.cwd(), "public", "profile.jpg"));
+  const hasPhoto = fs.existsSync(path.join(process.cwd(), "public", "profile.webp"));
 
   return (
     <Section id="about" eyebrow="about" title="Backend engineer for money-moving systems">
@@ -13,7 +13,7 @@ export default function About() {
         <Reveal>
           {hasPhoto ? (
             <Image
-              src="/profile.jpg"
+              src="/profile.webp"
               alt={profile.name}
               width={160}
               height={160}

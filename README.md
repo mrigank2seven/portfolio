@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio
 
-## Getting Started
+Personal portfolio for Mrigank Gupta. Next.js (App Router) exported as a fully static site (`output: "export"`): no server, no runtime.
 
-First, run the development server:
+## Develop
 
 ```bash
+npm install
+cp .env.example .env.local   # set NEXT_PUBLIC_SITE_URL
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Other scripts: `npm run lint`, `npm run build` (writes static site to `out/`).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable | Required | Purpose |
+|---|---|---|
+| `NEXT_PUBLIC_SITE_URL` | production builds | Canonical URL, Open Graph tags, `sitemap.xml`, `robots.txt`. The build fails if unset. |
+| `DEV_ORIGIN` | no | Extra origin allowed to load the dev server (e.g. a phone on your LAN). |
 
-## Learn More
+## Content
 
-To learn more about Next.js, take a look at the following resources:
+- **Page content** lives in `content/site.ts` (profile, experience, projects, diagrams, skills, impact, education). Components are presentational.
+  - Impact stats with `todo: true` are hidden until you replace the placeholder value and remove the flag.
+- **Blog posts** are `content/blog/<slug>.mdx` with frontmatter. Invalid frontmatter fails the build.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+  ```mdx
+  ---
+  title: Post title
+  date: 2026-01-31   # YYYY-MM-DD
+  summary: One-line summary shown in lists and link previews.
+  ---
+  ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Structure
 
-## Deploy on Vercel
+```
+app/            routes: /, /blog, /blog/[slug], opengraph-image, sitemap, robots
+components/     section components + client islands (Nav, CommandPalette, ThemeToggle, FlowDiagram)
+content/        site.ts and blog/*.mdx
+lib/            blog loader (build-time fs), site URL helper
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Build with `NEXT_PUBLIC_SITE_URL` set and publish the `out/` directory to any static host (Vercel, Netlify, Cloudflare Pages, S3 + CDN). CI (`.github/workflows/ci.yml`) runs lint and build and fails if placeholder `TODO` text reaches the output.
