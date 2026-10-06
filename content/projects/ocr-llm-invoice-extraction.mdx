@@ -6,18 +6,18 @@ stack: ["Python", "OCR", "LLM", "Celery"]
 
 ## The Problem
 
-Invoices arrive as documents, and turning them into structured data took manual intervention. Extraction success sat at 35%, so most documents still needed a person.
+Invoices arrive as documents, and turning them into structured data took **manual intervention**. Extraction success sat at **35%**, so most documents still needed a person.
 
 ## The Approach
 
-Each document becomes a job with tracked state, so every invoice can be followed from upload to result. OCR recognizes the text and layout, an LLM extracts structured fields from it, and IRN / e-invoice compliance data is parsed and checked. Failed jobs are retried with backoff instead of being handled by hand.
+Each document becomes a **job with tracked state**, so every invoice can be followed from upload to result. **OCR** recognizes the text and layout, an **LLM** extracts structured fields from it, and **IRN / e-invoice** compliance data is parsed and checked. Failed jobs are **retried with backoff** instead of being handled by hand.
 
 ## My Contribution
 
-I designed and built the pipeline end to end: job-state management, retry/backoff, structured extraction and compliance parsing.
+I **designed and built** the pipeline **end to end**: **job-state management**, **retry/backoff**, **structured extraction** and **compliance parsing**.
 
-The same OCR stack also powers Aadhaar document masking. It masks PDF, JPEG and PNG documents using PDF redaction with an OCR fallback, and is exposed through authenticated APIs with concurrent background processing.
+The same OCR stack also powers **Aadhaar document masking**. It masks **PDF, JPEG and PNG** documents using **PDF redaction** with an **OCR fallback**, and is exposed through **authenticated APIs** with **concurrent background processing**.
 
 ## The Outcome
 
-Extraction success rose from 35% to 85%+, and manual intervention dropped.
+Extraction success rose from **35% to 85%+**, and **manual intervention dropped**.

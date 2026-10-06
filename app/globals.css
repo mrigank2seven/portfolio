@@ -171,6 +171,11 @@ body {
   padding-left: 1.25rem;
 }
 
+.post strong {
+  font-weight: 500;
+  color: var(--accent);
+}
+
 .post a {
   color: var(--accent);
   text-decoration: underline;
