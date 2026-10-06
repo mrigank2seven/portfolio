@@ -1,0 +1,46 @@
+---
+title: "Observability: Knowing What Your Software Is Doing While You Build It"
+date: "2026-08-07"
+summary: "A warning light tells you something is wrong. Observability tells you why. Here is what that means and why smart teams plan for it from day one."
+---
+
+Your car has a dashboard. When the engine light comes on, you know something is wrong. You do not know what.
+
+Then you take it to a mechanic who plugs in a device and reads out the exact problem. That second step is the difference between **monitoring** and **observability**.
+
+- **Monitoring** says: "Something is wrong."
+- **Observability** says: "Here is what, here is where, and here is why."
+
+## The three kinds of clues
+
+When software misbehaves, engineers look at three kinds of clues. They are easier to understand than they sound.
+
+- **Numbers.** How many things went wrong, how busy it is, how slow it is. Like the speedometer and fuel gauge. Engineers call these **metrics**.
+- **The journey.** The path one request took through the system, and how long each stop took. Like tracking a parcel from the shop to your door. Engineers call this a **trace**.
+- **The diary.** A written note of what happened at each step. Engineers call these **logs**.
+
+On their own, each clue is limited. Together they let you say, "This one customer's request slowed down at step four, and here is what step four wrote in its diary."
+
+## The big idea: build it in, don't bolt it on
+
+This is the part that is changing. In the old days, people built the software first, put it live, and only then thought, "Oh, we should watch it."
+
+That is like building a house and then deciding you want windows. You can cut them in, but it is messy.
+
+Newer teams plan the clues **while they build**. For each new feature they ask, "What will we need to see if this goes wrong?" and they add it right then.
+
+Some even write checks that look at the journey itself. Not just "did it work?" but "did it take a sensible path, and quickly?" That catches slow spots and hidden problems **before** real people run into them.
+
+## Why it matters
+
+Without these clues, fixing a problem is guessing. Someone says "it's slow sometimes," and you spend days wondering where to look.
+
+With them, you open the journey of one slow request and the problem is right there.
+
+## The catch
+
+Collecting clues costs money and storage, and more is not always better. You also need to be careful never to write private details, like someone's personal or financial information, into the diary.
+
+## The short version
+
+Do not wait for the engine light. Put a good set of gauges in the car **while you are building it**, so when something goes wrong you can find out why in minutes, not days.

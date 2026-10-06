@@ -1,0 +1,38 @@
+---
+title: "WebAssembly Beyond the Browser: A Tiny, Safe, Fast Box for Code"
+date: "2026-06-05"
+summary: "WebAssembly started as a trick to make websites faster. Now it is moving to servers. Here is the idea with no jargon."
+---
+
+Shipping used to be a mess. Every item had a different shape, so loading a ship was slow and things got damaged. Then someone invented the **standard shipping container**. Everything goes into the same box, and any ship, truck or crane can handle it.
+
+**WebAssembly** is a bit like that, but for code. People often shorten it to **Wasm**.
+
+## Where it started
+
+Websites are usually built with a language called JavaScript. It is great, but it is not the fastest. Sometimes you want heavy work done inside a web page, like editing a photo or running a game.
+
+Wasm lets programmers write code in other languages, turn it into one standard compact package, and run it in the browser at close to full speed.
+
+## Why it is leaving the browser
+
+People noticed the package has some nice qualities, and they are useful on servers too:
+
+- **It is small.** The package is tiny.
+- **It starts almost instantly.** Other ways of running code can take a while to wake up. This one is ready right away.
+- **It runs the same everywhere.** One package, many kinds of machines.
+- **It is sealed.** This is the big one. A Wasm package lives in a sandbox, like a child playing in a sandpit with a fence around it. It can only touch what you hand it. It cannot wander off and open your files unless you let it.
+
+## What it could be used for
+
+- **Plugins from strangers.** Say your app lets customers add their own custom rules. Running that code in a sealed box means a bad plugin cannot wreck your system.
+- **Quick small jobs** that need to start instantly and run close to the user.
+- **Reusing one piece of code** across many programs and languages.
+
+## The honest part
+
+It is still young. Some of the tools programmers love do not work with it yet, and some things, like connecting to the network, are still being worked out. For many teams today it is something to watch and try on a small experiment, not something to rebuild everything around.
+
+## The short version
+
+Wasm is a standard, tiny, sealed box for code. It began in web pages, and it is growing up into servers because it is fast to start and safe to run.

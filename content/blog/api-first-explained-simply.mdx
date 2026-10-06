@@ -1,0 +1,48 @@
+---
+title: "API-First Design: Agree on the Plug Before Building the Appliance"
+date: "2026-04-03"
+summary: "Why the best software is built like LEGO, with parts that snap together, and why the snap shape comes first."
+---
+
+Think about the power socket in your wall. Any lamp, kettle or phone charger with the right plug works in it. The people who made your kettle never met the people who made your wall.
+
+That works because everyone **agreed on the shape of the plug first**.
+
+## What an API is
+
+An **API** is just that plug shape for software. It is a clear agreement that says: "If you ask me in this exact way, I will answer in this exact way."
+
+A restaurant menu is a good comparison. You do not need to know how the kitchen works. You pick from the menu, and food arrives. The menu is the API.
+
+## What "API-first" means
+
+Some teams build the whole thing and then think about how others will connect to it. That is like building a kettle and then deciding what plug to put on.
+
+**API-first** flips it around:
+
+1. Decide and write down how the parts will talk to each other.
+2. Agree on it.
+3. Then build each part, in parallel, knowing exactly how it needs to fit.
+
+## Why this is powerful
+
+- **Parts can be swapped.** If one piece is slow, replace it, as long as the new one has the same plug.
+- **Teams do not block each other.** Once the plug is agreed, one team can build the screen while another builds the engine.
+- **Outside services snap in.** Need payments, maps or messages? Plug in a ready-made service instead of building your own.
+- **Screens can be built in pieces too.** Different teams can own different parts of one web page, as long as the pieces fit together.
+
+This style is sometimes called **composable**, a fancy word for "built from parts you can rearrange."
+
+## A small but important habit
+
+Computers sometimes send the same request twice, for example if the internet blinks. For harmless requests, that does not matter. But for something like a payment, doing it twice would be a real problem.
+
+So good designs include a trick: each request carries a unique tag, a bit like a receipt number. If the same tag arrives again, the system says, "I already did that one," and does not repeat it.
+
+## The catch
+
+It is easy to take this too far and cut everything into hundreds of tiny parts. Then nobody can keep track of what talks to what. A good test is: "Can I replace one part without asking everyone else to change?" If yes, you have it right.
+
+## The short version
+
+Agree on the plug before you build the appliance. Then everyone can build at once, and nothing is stuck when you want to swap a part.
