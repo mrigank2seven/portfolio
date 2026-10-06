@@ -14,9 +14,25 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const pageTitle = `${profile.name} | ${profile.role}`;
+
 export const metadata: Metadata = {
-  title: `${profile.name} | ${profile.role}`,
+  metadataBase: new URL(siteUrl),
+  title: pageTitle,
   description: profile.tagline,
+  openGraph: {
+    type: "website",
+    siteName: profile.name,
+    title: pageTitle,
+    description: profile.tagline,
+    url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: pageTitle,
+    description: profile.tagline,
+  },
 };
 
 const themeScript = `try{if(localStorage.getItem("theme")==="light")document.documentElement.classList.add("light")}catch(e){}`;
