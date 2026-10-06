@@ -21,10 +21,19 @@ export default function Hero() {
     <section className="relative overflow-hidden border-b border-line">
       <div className="relative mx-auto grid max-w-5xl gap-12 px-4 py-20 sm:px-6 sm:py-28 lg:grid-cols-[1.1fr_1fr] lg:items-center">
         <div>
-          <p className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1 font-mono text-xs text-muted">
-            <MapPin className="size-3.5 text-accent" />
-            {profile.location}
-          </p>
+          <div className="flex flex-wrap items-center gap-2">
+            <p className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1 font-mono text-xs text-muted">
+              <MapPin className="size-3.5 text-accent" />
+              {profile.location}
+            </p>
+            <p className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-surface px-3 py-1 font-mono text-xs text-fg">
+              <span className="relative flex size-2">
+                <span className="absolute inline-flex size-full animate-ping rounded-full bg-green-400 opacity-60 motion-reduce:animate-none" />
+                <span className="relative inline-flex size-2 rounded-full bg-green-400" />
+              </span>
+              {profile.availability}
+            </p>
+          </div>
           <h1 className="mt-6 text-4xl font-semibold leading-[1.1] tracking-tight sm:text-6xl">
             Building scalable{" "}
             <span className="text-accent">fintech backends.</span>

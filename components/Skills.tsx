@@ -1,4 +1,5 @@
 import { skills } from "@/content/site";
+import TechIcon from "./TechIcon";
 import { Reveal, Section } from "./ui";
 
 export default function Skills() {
@@ -17,8 +18,9 @@ export default function Skills() {
                 {s.items.map((item) => (
                   <li
                     key={item}
-                    className="rounded-md border border-line px-2.5 py-1 text-sm text-muted"
+                    className="inline-flex items-center gap-2 rounded-md border border-line px-2.5 py-1 text-sm text-muted"
                   >
+                    <TechIcon name={item} />
                     {item}
                   </li>
                 ))}

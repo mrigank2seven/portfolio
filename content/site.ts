@@ -4,6 +4,7 @@ export const profile = {
   role: "Software Engineer II",
   company: "Progfin",
   location: "Lucknow, India",
+  availability: "Open for opportunities · Backend Engineer",
   email: "mail.mrigank7@gmail.com",
   linkedin: "https://www.linkedin.com/in/mrigank2seven",
   resume: "/resume.pdf",
@@ -287,7 +288,7 @@ export const skills: { group: string; items: string[] }[] = [
       "CI/CD",
     ],
   },
-  { group: "AI & Automation", items: ["OCR", "LLMs", "OpenAI API", "Async Processing"] },
+  { group: "AI & Automation", items: ["OCR", "LLMs", "AI Agents", "LangChain", "n8n", "OpenAI API", "Async Processing"] },
   {
     group: "Engineering",
     items: ["Microservices", "Event-Driven Architecture", "Distributed Systems", "System Design", "REST API Design", "Database Optimization"],
