@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import CommandPalette from "@/components/CommandPalette";
 import Nav from "@/components/Nav";
+import { PaletteProvider } from "@/components/PaletteContext";
 import { profile } from "@/content/site";
+import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,7 +17,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const siteUrl = getSiteUrl();
 const pageTitle = `${profile.name} | ${profile.role}`;
 
 export const metadata: Metadata = {
@@ -54,7 +57,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to content
         </a>
-        <Nav />
+        <PaletteProvider>
+          <Nav />
+          <CommandPalette />
+        </PaletteProvider>
         <main id="main">{children}</main>
         <footer className="border-t border-line py-8 text-center font-mono text-xs text-muted">
           © {new Date().getFullYear()} {profile.name}. Press{" "}
