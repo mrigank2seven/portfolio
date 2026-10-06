@@ -6,7 +6,6 @@ Personal portfolio for Mrigank Gupta. Next.js (App Router) exported as a fully s
 
 ```bash
 npm install
-cp .env.example .env.local   # set NEXT_PUBLIC_SITE_URL
 npm run dev
 ```
 
@@ -16,7 +15,6 @@ Other scripts: `npm run lint`, `npm run build` (writes static site to `out/`).
 
 | Variable | Required | Purpose |
 |---|---|---|
-| `NEXT_PUBLIC_SITE_URL` | production builds | Canonical URL, Open Graph tags, `sitemap.xml`, `robots.txt`. The build fails if unset. |
 | `DEV_ORIGIN` | no | Extra origin allowed to load the dev server (e.g. a phone on your LAN). |
 
 ## Content
@@ -44,4 +42,4 @@ lib/            blog loader (build-time fs), site URL helper
 
 ## Deploy
 
-Build with `NEXT_PUBLIC_SITE_URL` set and publish the `out/` directory to any static host (Vercel, Netlify, Cloudflare Pages, S3 + CDN). CI (`.github/workflows/ci.yml`) runs lint and build and fails if placeholder `TODO` text reaches the output.
+The canonical URL (Open Graph tags, `sitemap.xml`, `robots.txt`) is the constant in `lib/site-url.ts`; update it if the domain changes. Build and publish the `out/` directory to any static host (Vercel, Netlify, Cloudflare Pages, S3 + CDN). CI (`.github/workflows/ci.yml`) runs lint and build and fails if placeholder `TODO` text reaches the output.
