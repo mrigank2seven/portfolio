@@ -149,6 +149,7 @@ export type DiagramNode = {
   desc: string;
   x: number;
   y: number;
+  w?: number;
 };
 
 export type Diagram = {
@@ -204,6 +205,71 @@ export const diagrams: Diagram[] = [
       ["cibil", "agg"],
       ["agg", "assess"],
       ["assess", "decision"],
+    ],
+  },
+  {
+    id: "totp",
+    tab: "TOTP admin auth",
+    title: "Privileged-admin authentication",
+    summary: "Second-factor login for admins, rolled out across 7 Django services.",
+    nodes: [
+      { id: "login", label: "Admin login", desc: "Privileged admin signs in with their password.", x: 70, y: 110 },
+      { id: "lock", label: "Lockout check", desc: "Repeated failures lock the account before codes can be brute-forced.", x: 230, y: 110 },
+      { id: "verify", label: "TOTP verify", desc: "The 6-digit time-based code is validated against the admin's secret.", x: 390, y: 110 },
+      { id: "secret", label: "Encrypted secret", desc: "TOTP secrets are stored encrypted, never in plaintext.", x: 390, y: 230 },
+      { id: "recovery", label: "Recovery codes", desc: "One-time recovery codes let admins back in if the device is lost.", x: 550, y: 230 },
+      { id: "session", label: "Admin session", desc: "Access is granted only after the second factor passes.", x: 710, y: 110 },
+      { id: "tests", label: "Auth-flow tests", desc: "Automated tests cover the whole flow in each of the 7 services.", x: 230, y: 230 },
+    ],
+    edges: [
+      ["login", "lock"],
+      ["lock", "verify"],
+      ["verify", "session"],
+      ["secret", "verify"],
+      ["recovery", "verify"],
+      ["tests", "lock"],
+    ],
+  },
+  {
+    id: "aadhaar",
+    tab: "Aadhaar masking",
+    title: "Aadhaar document masking",
+    summary: "Locate the Aadhaar number on a card and mask its first 8 digits before the document is stored or shared.",
+    nodes: [
+      { id: "card", label: "Aadhaar card", desc: "The uploaded Aadhaar card image or document.", x: 90, y: 145 },
+      { id: "locate", label: "Locate Aadhaar number", desc: "Find where the 12-digit Aadhaar number sits on the card.", x: 300, y: 145, w: 170 },
+      { id: "mask", label: "Mask first 8", desc: "Cover the first 8 digits so only the last 4 stay visible.", x: 510, y: 145 },
+      { id: "out", label: "Masked document", desc: "The card with its Aadhaar number masked, safe to store or share.", x: 710, y: 145 },
+    ],
+    edges: [
+      ["card", "locate"],
+      ["locate", "mask"],
+      ["mask", "out"],
+    ],
+  },
+  {
+    id: "lending",
+    tab: "Lending platform",
+    title: "Data to disbursal",
+    summary: "Accounting and ledger data consolidated, underwritten and handed to loan servicing.",
+    nodes: [
+      { id: "erp", label: "ERP data", desc: "Synced accounting data: invoices, sales and purchase ledgers, transactions.", x: 80, y: 60 },
+      { id: "manual", label: "Manual ledger", desc: "Ledgers provided by the business directly rather than synced from an ERP.", x: 80, y: 170 },
+      { id: "parser", label: "Ledger parser", desc: "Extracts, normalizes and parses manual ledgers into transactions.", x: 250, y: 170 },
+      { id: "consol", label: "Data consolidation", desc: "Brings synced and manual ledger data into one consolidated financial view.", x: 410, y: 115, w: 160 },
+      { id: "vis", label: "Visibility report", desc: "Underwriting-oriented view of the business's financial activity.", x: 580, y: 60 },
+      { id: "checks", label: "CIBIL + GSTIN", desc: "Credit history check plus GSTIN verification, matched against the ledger for consistency.", x: 580, y: 170 },
+      { id: "uw", label: "Underwriting", desc: "Combines visibility, ledger, credit and GST checks into an approve or reject decision.", x: 730, y: 60 },
+      { id: "servicing", label: "Loan servicing", desc: "Approved cases move on to loan creation, disbursal, repayment and collections.", x: 730, y: 200 },
+    ],
+    edges: [
+      ["erp", "consol"],
+      ["manual", "parser"],
+      ["parser", "consol"],
+      ["consol", "vis"],
+      ["vis", "uw"],
+      ["checks", "uw"],
+      ["uw", "servicing"],
     ],
   },
 ];

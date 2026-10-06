@@ -71,9 +71,9 @@ export default function FlowDiagram({ diagram }: { diagram: Diagram }) {
             className="cursor-pointer outline-none"
           >
             <rect
-              x={n.x - NODE_W / 2}
+              x={n.x - (n.w ?? NODE_W) / 2}
               y={n.y - NODE_H / 2}
-              width={NODE_W}
+              width={n.w ?? NODE_W}
               height={NODE_H}
               rx={8}
               strokeWidth={1.5}
