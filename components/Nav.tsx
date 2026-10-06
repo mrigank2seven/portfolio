@@ -17,7 +17,7 @@ export default function Nav() {
         aria-label="Primary"
         className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4 sm:px-6"
       >
-        <Link href="/" className="font-mono text-sm font-semibold">
+        <Link href="/#about" className="font-mono text-sm font-semibold">
           <span className="text-accent">&gt;</span> {profile.initials.toLowerCase()}
         </Link>
 
