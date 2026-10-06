@@ -1,5 +1,5 @@
 ---
-title: "From scattered financial data to one lending decision"
+title: "From Scattered Financial Data to One Lending Decision"
 date: "2026-09-15"
 summary: "How accounting data and manual ledgers become a single consolidated view, then an underwriting decision, and why clear ownership between systems matters more than any one clever component."
 ---
@@ -8,7 +8,7 @@ A lending decision is only as good as the data behind it, and in practice that d
 
 This is how I think about that flow, with the systems named by their job rather than their internal names.
 
-## Two sources of financial data
+## Two Sources of Financial Data
 
 Some businesses have accounting software that syncs automatically. Their invoices, sales and purchase ledgers and transactions arrive without anyone uploading anything.
 
@@ -16,7 +16,7 @@ Others provide ledgers by hand. That data is messier: it has to be extracted, no
 
 These are different problems, so they get different components. A **ledger parser** owns manual ledgers. The synced accounting data comes through its own path. Neither one tries to do the other's job.
 
-## Consolidate before you analyze
+## Consolidate Before You Analyze
 
 The step that makes the rest tractable is a **consolidation layer** that takes both sources and produces one financial view per business.
 
@@ -30,7 +30,7 @@ Downstream code then asks one place for a business's financial picture instead o
 
 The output is a **visibility report**: an underwriting-oriented summary of the business's activity. It's a product of the data layer, and the underwriting system consumes it rather than rebuilding it.
 
-## Underwriting combines more than the report
+## Underwriting Combines More Than the Report
 
 The underwriting engine receives the visibility report and the ledger. It then brings in external checks:
 
@@ -42,7 +42,7 @@ That last check is worth calling out. Each source can look reasonable alone. The
 
 The engine then produces a decision: approve or reject.
 
-## Hand off the approved case, not the whole pipeline
+## Hand Off the Approved Case, Not the Whole Pipeline
 
 Approved cases move to the **loan servicing** system, which owns everything after the decision: creating the loan, disbursal, repayment schedules, collections and tracking what's outstanding.
 
@@ -53,7 +53,7 @@ Two things matter about this boundary:
 
 There's also a second, simpler path: invoice-based disbursal, where an uploaded invoice syncs from the accounting data straight to servicing. It skips the credit-decision flow because it serves a different product. It's worth keeping the two flows distinct in documentation so people don't assume every loan passes through underwriting.
 
-## Ownership is the real architecture
+## Ownership Is the Real Architecture
 
 If I had to compress the design into one idea, it's that each system owns one kind of thing:
 
@@ -67,7 +67,7 @@ If I had to compress the design into one idea, it's that each system owns one ki
 
 Clear ownership makes the hard operational questions answerable. When a number looks wrong, you know which system to check first. Retries are safer because each step can be repeated without guessing who holds the truth. An audit can follow a decision back through the report to the data it came from.
 
-## Model the handoffs as events
+## Model the Handoffs as Events
 
 Rather than systems reading each other's databases, I prefer to describe each handoff as a business event: a ledger was synced, a visibility report was generated, underwriting passed or failed, a loan was approved, a disbursal completed.
 
@@ -77,7 +77,7 @@ Events give you a few things that direct database access doesn't:
 - **Idempotency points.** If an event is delivered twice, a consumer can recognise it and do nothing the second time.
 - **An audit trail** of what happened and in what order, which is exactly what you want when a decision is questioned later.
 
-## What I'd watch in production
+## What I'd Watch in Production
 
 - **Reconciliation:** periodically compare consolidated totals against the sources, so drift is found by a check rather than by a customer.
 - **Staleness:** know how old the data behind a decision was when the decision was made.

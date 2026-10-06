@@ -21,7 +21,7 @@
   --line: #e2e4e7;
   --accent: #0f766e;
   --accent-fg: #ffffff;
-  --glow: rgba(15, 118, 110, 0.1);
+  --glow: rgba(15, 118, 110, 0.2);
 }
 
 @theme inline {
@@ -48,7 +48,12 @@ html {
 }
 
 body {
-  background: var(--bg);
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-attachment: fixed;
   color: var(--fg);
   font-family: var(--font-sans), system-ui, sans-serif;
 }
@@ -58,12 +63,22 @@ body {
   color: var(--accent-fg);
 }
 
-.bg-grid {
-  background-image:
-    linear-gradient(var(--line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse at 50% 30%, #000 20%, transparent 70%);
+.spotlight {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+  background: radial-gradient(
+    500px circle at var(--mx, 50%) var(--my, 30%),
+    var(--glow),
+    transparent 60%
+  );
+}
+
+.spotlight[data-active="true"] {
+  opacity: 1;
 }
 
 @media (scripting: enabled) and (prefers-reduced-motion: no-preference) {

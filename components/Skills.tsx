@@ -3,7 +3,7 @@ import { Reveal, Section } from "./ui";
 
 export default function Skills() {
   return (
-    <Section id="skills" eyebrow="skills" title="Tech stack">
+    <Section id="skills" eyebrow="skills" title="Tech Stack">
       <div className="grid gap-4 sm:grid-cols-2">
         {skills.map((s, i) => (
           <Reveal key={s.group} delay={(i % 2) * 0.06}>

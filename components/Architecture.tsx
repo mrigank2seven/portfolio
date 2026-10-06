@@ -14,7 +14,7 @@ export default function Architecture() {
   const active = diagrams.find((d) => d.id === activeId) ?? diagrams[0];
 
   return (
-    <Section id="architecture" eyebrow="architecture" title="How the systems fit together">
+    <Section id="architecture" eyebrow="architecture" title="How the Systems Fit Together">
       <div role="tablist" aria-label="Architecture diagrams" className="flex flex-wrap gap-2">
         {diagrams.map((d) => (
           <button

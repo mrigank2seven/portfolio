@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import CommandPalette from "@/components/CommandPalette";
 import Nav from "@/components/Nav";
 import { PaletteProvider } from "@/components/PaletteContext";
+import Spotlight from "@/components/Spotlight";
 import { profile } from "@/content/site";
 import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
@@ -61,6 +62,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Nav />
           <CommandPalette />
         </PaletteProvider>
+        <Spotlight />
         <main id="main">{children}</main>
         <footer className="border-t border-line py-8 text-center font-mono text-xs text-muted">
           © {new Date().getFullYear()} {profile.name}. Press{" "}

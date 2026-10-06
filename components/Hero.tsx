@@ -2,7 +2,6 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, Download, MapPin } from "lucide-react";
-import { useRef, type MouseEvent } from "react";
 import { profile } from "@/content/site";
 
 const terminalLines = [
@@ -16,31 +15,9 @@ const terminalLines = [
 
 export default function Hero() {
   const reduce = useReducedMotion();
-  const ref = useRef<HTMLElement>(null);
-
-  const onMove = (e: MouseEvent) => {
-    const el = ref.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    el.style.setProperty("--mx", `${e.clientX - rect.left}px`);
-    el.style.setProperty("--my", `${e.clientY - rect.top}px`);
-  };
 
   return (
-    <section
-      ref={ref}
-      onMouseMove={onMove}
-      className="relative overflow-hidden border-b border-line"
-    >
-      <div className="bg-grid absolute inset-0" aria-hidden />
-      <div
-        aria-hidden
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(500px circle at var(--mx, 50%) var(--my, 30%), var(--glow), transparent 60%)",
-        }}
-      />
+    <section className="relative overflow-hidden border-b border-line">
       <div className="relative mx-auto grid max-w-5xl gap-12 px-4 py-20 sm:px-6 sm:py-28 lg:grid-cols-[1.1fr_1fr] lg:items-center">
         <div>
           <p className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1 font-mono text-xs text-muted">

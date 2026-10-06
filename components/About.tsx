@@ -8,7 +8,7 @@ export default function About() {
   const hasPhoto = fs.existsSync(path.join(process.cwd(), "public", "profile.webp"));
 
   return (
-    <Section id="about" eyebrow="about" title="Backend engineer for money-moving systems">
+    <Section id="about" eyebrow="about" title="Backend Engineer for Money-Moving Systems">
       <div className="grid gap-10 md:grid-cols-[auto_1fr] md:items-start">
         <Reveal>
           {hasPhoto ? (

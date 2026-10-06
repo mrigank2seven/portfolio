@@ -1,12 +1,12 @@
 ---
-title: "Making a busy PostgreSQL database faster without a rewrite"
+title: "Making a Busy PostgreSQL Database Faster Without a Rewrite"
 date: "2026-10-06"
 summary: "Three changes that took pressure off PostgreSQL in high-volume lending workflows: fewer repeated lookups, one aggregation instead of many, and indexes built without locking writes."
 ---
 
 Most database slowness I've dealt with wasn't a clever-query problem. It was the same work done many times, or a safe-looking change that blocked production. Here are the three fixes that paid off most on high-volume Django and PostgreSQL workflows, and how I'd approach each one again.
 
-## 1. Stop looking things up repeatedly
+## 1. Stop Looking Things Up Repeatedly
 
 The pattern is easy to write by accident. A loop handles a batch of invoices, and each iteration fetches its related record, or the same reference row, again:
 
@@ -34,7 +34,7 @@ for invoice in invoices:
 
 How to find these: count queries per request or per task rather than reading code. Django's `assertNumQueries` in tests, or query logging in a staging run, shows a query count that grows with the input. A healthy path stays flat as the batch grows.
 
-## 2. Aggregate in the database, once
+## 2. Aggregate in the Database, Once
 
 The second pattern is computing an invoice's status from many pieces of data in several places: one query for paid amounts, another for pending ones, a third in Python to combine them. Each call site repeats the work, and the logic drifts.
 
@@ -51,7 +51,7 @@ Invoice.objects.annotate(
 
 The performance win is real, but the bigger one is correctness. When status is computed in one query, two screens can't disagree about it.
 
-## 3. Add indexes without blocking writes
+## 3. Add Indexes Without Blocking Writes
 
 A slow query often needs an index, but on a large, busy table a plain `CREATE INDEX` takes a lock that blocks writes while it builds. In a lending system that means stalled operations, which is worse than the slow query.
 
@@ -79,7 +79,7 @@ Things to know before relying on it:
 - If it fails partway it can leave an invalid index behind. Check for one and drop it before retrying.
 - It's still extra I/O, so schedule it away from peak load.
 
-## The order I'd do it in
+## The Order I'd Do It In
 
 1. **Count queries first.** Repeated lookups are usually the cheapest win and need no schema change.
 2. **Consolidate aggregations next.** It improves speed and removes inconsistent definitions.
@@ -87,6 +87,6 @@ Things to know before relying on it:
 
 For step three, `EXPLAIN (ANALYZE, BUFFERS)` shows whether a query uses an index and where the time goes. Read the plan before adding the index and again after.
 
-## What I'd measure
+## What I'd Measure
 
 A before-and-after number makes a change like this believable. Track query count per request or task, p95 latency on the affected endpoints, and lock wait time during migrations. Without those, you only have a feeling that things got faster.

@@ -3,7 +3,7 @@ import { Reveal, Section } from "./ui";
 
 export default function Projects() {
   return (
-    <Section id="projects" eyebrow="projects" title="Things I've built">
+    <Section id="projects" eyebrow="projects" title="Things I've Built">
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((p, i) => (
           <li key={p.title}>

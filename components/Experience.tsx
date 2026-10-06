@@ -3,7 +3,7 @@ import { Reveal, Section } from "./ui";
 
 export default function Experience() {
   return (
-    <Section id="experience" eyebrow="experience" title="Where I've shipped">
+    <Section id="experience" eyebrow="experience" title="Where I've Shipped">
       <Reveal>
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <div>

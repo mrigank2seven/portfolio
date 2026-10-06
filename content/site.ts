@@ -7,7 +7,7 @@ export const profile = {
   email: "mail.mrigank7@gmail.com",
   linkedin: "https://www.linkedin.com/in/mrigank2seven",
   resume: "/resume.pdf",
-  headline: "Building scalable fintech backends.",
+  headline: "Building Scalable Fintech Backends.",
   tagline:
     "Python/Django engineer with 4+ years designing lending, payments and AI-driven document pipelines for high-volume financial systems.",
   summary:
@@ -42,14 +42,14 @@ export const experience = {
   period: "April 2022 – Present",
   groups: [
     {
-      title: "AI & document intelligence",
+      title: "AI & Document Intelligence",
       points: [
         "Designed and built an end-to-end in-house OCR + LLM invoice-extraction pipeline with job-state management, retry/backoff, structured extraction and IRN/e-invoice compliance parsing, raising extraction success from 35% to 85%+ and reducing manual intervention.",
         "Built Aadhaar document masking for PDF, JPEG and PNG using PDF redaction with OCR fallback, exposed through authenticated APIs with concurrent background processing.",
       ],
     },
     {
-      title: "Lending & financial workflows",
+      title: "Lending & Financial Workflows",
       points: [
         "Architected and developed a Pre-Approval Loan Eligibility system aggregating ERP data, manual ledgers, sales history, CIBIL, GSTIN and other parameters into a consolidated, data-driven credit assessment and lending decision workflow.",
         "Architected cross-system financial workflows spanning LMS, LOS, ERP, UMS, LedgerParser and ElapDB, improving data consistency across invoice, lending, approval and financial-processing lifecycles.",
@@ -59,14 +59,14 @@ export const experience = {
       ],
     },
     {
-      title: "Security & performance",
+      title: "Security & Performance",
       points: [
         "Implemented TOTP-based privileged-admin authentication across 7 Django services, including encrypted secrets, recovery codes, lockout controls and automated authentication-flow testing.",
         "Led PostgreSQL performance optimization across high-volume workflows by eliminating repeated database lookups, consolidating invoice-status aggregation and introducing concurrent index migrations.",
       ],
     },
     {
-      title: "Analytics & risk",
+      title: "Analytics & Risk",
       points: [
         "Developed portfolio analytics APIs covering distributor performance, portfolio growth, management summaries, company drill-downs and industry/brand productivity, including AUM, utilization and delinquency metrics.",
         "Performed fraud analytics to identify suspicious borrower relationships and repeat applications, building a deduplication framework using Business PAN, CIBIL history and historical relationships with the organization.",
@@ -164,16 +164,16 @@ export type Diagram = {
 export const diagrams: Diagram[] = [
   {
     id: "ocr",
-    tab: "OCR + LLM pipeline",
-    title: "Invoice extraction pipeline",
+    tab: "OCR + LLM Pipeline",
+    title: "Invoice Extraction Pipeline",
     summary: "Job-state driven extraction with retry/backoff and compliance parsing.",
     nodes: [
       { id: "in", label: "Invoice", desc: "Invoice document enters the system.", x: 70, y: 110 },
-      { id: "q", label: "Job queue", desc: "Each document becomes a job with tracked state.", x: 230, y: 110 },
+      { id: "q", label: "Job Queue", desc: "Each document becomes a job with tracked state.", x: 230, y: 110 },
       { id: "ocr", label: "OCR", desc: "Text and layout are recognized from the document.", x: 390, y: 110 },
-      { id: "llm", label: "LLM extract", desc: "Structured fields are extracted from the recognized text.", x: 550, y: 110 },
-      { id: "irn", label: "IRN parse", desc: "IRN / e-invoice compliance data is parsed and checked.", x: 710, y: 110 },
-      { id: "retry", label: "Retry / backoff", desc: "Failed jobs are retried with backoff instead of manual handling.", x: 390, y: 230 },
+      { id: "llm", label: "LLM Extract", desc: "Structured fields are extracted from the recognized text.", x: 550, y: 110 },
+      { id: "irn", label: "IRN Parse", desc: "IRN / e-invoice compliance data is parsed and checked.", x: 710, y: 110 },
+      { id: "retry", label: "Retry / Backoff", desc: "Failed jobs are retried with backoff instead of manual handling.", x: 390, y: 230 },
     ],
     edges: [
       ["in", "q"],
@@ -186,16 +186,16 @@ export const diagrams: Diagram[] = [
   },
   {
     id: "eligibility",
-    tab: "Loan eligibility",
-    title: "Pre-approval eligibility",
+    tab: "Loan Eligibility",
+    title: "Pre-Approval Eligibility",
     summary: "Many data sources reduced to one lending decision.",
     nodes: [
-      { id: "erp", label: "ERP data", desc: "Operational data from the borrower's ERP.", x: 90, y: 40 },
-      { id: "ledger", label: "Manual ledgers", desc: "Ledgers uploaded or entered by hand.", x: 90, y: 110 },
-      { id: "sales", label: "Sales history", desc: "Historical sales performance.", x: 90, y: 180 },
+      { id: "erp", label: "ERP Data", desc: "Operational data from the borrower's ERP.", x: 90, y: 40 },
+      { id: "ledger", label: "Manual Ledgers", desc: "Ledgers uploaded or entered by hand.", x: 90, y: 110 },
+      { id: "sales", label: "Sales History", desc: "Historical sales performance.", x: 90, y: 180 },
       { id: "cibil", label: "CIBIL", desc: "Credit bureau history.", x: 90, y: 250 },
       { id: "agg", label: "Aggregator", desc: "Normalizes and consolidates every source, including GSTIN data.", x: 350, y: 145 },
-      { id: "assess", label: "Credit assessment", desc: "Business rules and statistical checks score creditworthiness.", x: 550, y: 145 },
+      { id: "assess", label: "Credit Assessment", desc: "Business rules and statistical checks score creditworthiness.", x: 550, y: 145 },
       { id: "decision", label: "Decision", desc: "Data-driven pre-approval outcome.", x: 730, y: 145 },
     ],
     edges: [
@@ -209,17 +209,17 @@ export const diagrams: Diagram[] = [
   },
   {
     id: "totp",
-    tab: "TOTP admin auth",
-    title: "Privileged-admin authentication",
+    tab: "TOTP Admin Auth",
+    title: "Privileged-Admin Authentication",
     summary: "Second-factor login for admins, rolled out across 7 Django services.",
     nodes: [
-      { id: "login", label: "Admin login", desc: "Privileged admin signs in with their password.", x: 70, y: 110 },
-      { id: "lock", label: "Lockout check", desc: "Repeated failures lock the account before codes can be brute-forced.", x: 230, y: 110 },
-      { id: "verify", label: "TOTP verify", desc: "The 6-digit time-based code is validated against the admin's secret.", x: 390, y: 110 },
-      { id: "secret", label: "Encrypted secret", desc: "TOTP secrets are stored encrypted, never in plaintext.", x: 390, y: 230 },
-      { id: "recovery", label: "Recovery codes", desc: "One-time recovery codes let admins back in if the device is lost.", x: 550, y: 230 },
-      { id: "session", label: "Admin session", desc: "Access is granted only after the second factor passes.", x: 710, y: 110 },
-      { id: "tests", label: "Auth-flow tests", desc: "Automated tests cover the whole flow in each of the 7 services.", x: 230, y: 230 },
+      { id: "login", label: "Admin Login", desc: "Privileged admin signs in with their password.", x: 70, y: 110 },
+      { id: "lock", label: "Lockout Check", desc: "Repeated failures lock the account before codes can be brute-forced.", x: 230, y: 110 },
+      { id: "verify", label: "TOTP Verify", desc: "The 6-digit time-based code is validated against the admin's secret.", x: 390, y: 110 },
+      { id: "secret", label: "Encrypted Secret", desc: "TOTP secrets are stored encrypted, never in plaintext.", x: 390, y: 230 },
+      { id: "recovery", label: "Recovery Codes", desc: "One-time recovery codes let admins back in if the device is lost.", x: 550, y: 230 },
+      { id: "session", label: "Admin Session", desc: "Access is granted only after the second factor passes.", x: 710, y: 110 },
+      { id: "tests", label: "Auth-Flow Tests", desc: "Automated tests cover the whole flow in each of the 7 services.", x: 230, y: 230 },
     ],
     edges: [
       ["login", "lock"],
@@ -232,14 +232,14 @@ export const diagrams: Diagram[] = [
   },
   {
     id: "aadhaar",
-    tab: "Aadhaar masking",
-    title: "Aadhaar document masking",
+    tab: "Aadhaar Masking",
+    title: "Aadhaar Document Masking",
     summary: "Locate the Aadhaar number on a card and mask its first 8 digits before the document is stored or shared.",
     nodes: [
-      { id: "card", label: "Aadhaar card", desc: "The uploaded Aadhaar card image or document.", x: 90, y: 145 },
-      { id: "locate", label: "Locate Aadhaar number", desc: "Find where the 12-digit Aadhaar number sits on the card.", x: 300, y: 145, w: 170 },
-      { id: "mask", label: "Mask first 8", desc: "Cover the first 8 digits so only the last 4 stay visible.", x: 510, y: 145 },
-      { id: "out", label: "Masked document", desc: "The card with its Aadhaar number masked, safe to store or share.", x: 710, y: 145 },
+      { id: "card", label: "Aadhaar Card", desc: "The uploaded Aadhaar card image or document.", x: 90, y: 145 },
+      { id: "locate", label: "Locate Aadhaar Number", desc: "Find where the 12-digit Aadhaar number sits on the card.", x: 300, y: 145, w: 170 },
+      { id: "mask", label: "Mask First 8", desc: "Cover the first 8 digits so only the last 4 stay visible.", x: 510, y: 145 },
+      { id: "out", label: "Masked Document", desc: "The card with its Aadhaar number masked, safe to store or share.", x: 710, y: 145 },
     ],
     edges: [
       ["card", "locate"],
@@ -249,18 +249,18 @@ export const diagrams: Diagram[] = [
   },
   {
     id: "lending",
-    tab: "Lending platform",
-    title: "Data to disbursal",
+    tab: "Lending Platform",
+    title: "Data to Disbursal",
     summary: "Accounting and ledger data consolidated, underwritten and handed to loan servicing.",
     nodes: [
-      { id: "erp", label: "ERP data", desc: "Synced accounting data: invoices, sales and purchase ledgers, transactions.", x: 80, y: 60 },
-      { id: "manual", label: "Manual ledger", desc: "Ledgers provided by the business directly rather than synced from an ERP.", x: 80, y: 170 },
-      { id: "parser", label: "Ledger parser", desc: "Extracts, normalizes and parses manual ledgers into transactions.", x: 250, y: 170 },
-      { id: "consol", label: "Data consolidation", desc: "Brings synced and manual ledger data into one consolidated financial view.", x: 410, y: 115, w: 160 },
-      { id: "vis", label: "Visibility report", desc: "Underwriting-oriented view of the business's financial activity.", x: 580, y: 60 },
+      { id: "erp", label: "ERP Data", desc: "Synced accounting data: invoices, sales and purchase ledgers, transactions.", x: 80, y: 60 },
+      { id: "manual", label: "Manual Ledger", desc: "Ledgers provided by the business directly rather than synced from an ERP.", x: 80, y: 170 },
+      { id: "parser", label: "Ledger Parser", desc: "Extracts, normalizes and parses manual ledgers into transactions.", x: 250, y: 170 },
+      { id: "consol", label: "Data Consolidation", desc: "Brings synced and manual ledger data into one consolidated financial view.", x: 410, y: 115, w: 160 },
+      { id: "vis", label: "Visibility Report", desc: "Underwriting-oriented view of the business's financial activity.", x: 580, y: 60 },
       { id: "checks", label: "CIBIL + GSTIN", desc: "Credit history check plus GSTIN verification, matched against the ledger for consistency.", x: 580, y: 170 },
       { id: "uw", label: "Underwriting", desc: "Combines visibility, ledger, credit and GST checks into an approve or reject decision.", x: 730, y: 60 },
-      { id: "servicing", label: "Loan servicing", desc: "Approved cases move on to loan creation, disbursal, repayment and collections.", x: 730, y: 200 },
+      { id: "servicing", label: "Loan Servicing", desc: "Approved cases move on to loan creation, disbursal, repayment and collections.", x: 730, y: 200 },
     ],
     edges: [
       ["erp", "consol"],
@@ -277,12 +277,12 @@ export const diagrams: Diagram[] = [
 export const skills: { group: string; items: string[] }[] = [
   { group: "Languages", items: ["Python", "Go", "SQL"] },
   { group: "Frameworks", items: ["Django", "Django REST Framework", "FastAPI", "Celery"] },
-  { group: "Data & caching", items: ["PostgreSQL", "MySQL", "Redis"] },
+  { group: "Data & Caching", items: ["PostgreSQL", "MySQL", "Redis"] },
   { group: "Cloud & DevOps", items: ["AWS (EC2, S3)", "Docker", "CI/CD"] },
-  { group: "AI & automation", items: ["OCR", "LLMs", "OpenAI API", "Async processing"] },
+  { group: "AI & Automation", items: ["OCR", "LLMs", "OpenAI API", "Async Processing"] },
   {
     group: "Engineering",
-    items: ["Microservices", "Distributed systems", "System design", "REST API design", "Database optimization"],
+    items: ["Microservices", "Distributed Systems", "System Design", "REST API Design", "Database Optimization"],
   },
   { group: "Tools", items: ["Git", "Jira", "Postman"] },
 ];

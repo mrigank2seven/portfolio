@@ -7,7 +7,7 @@ const linkClass =
 
 export default function Contact() {
   return (
-    <Section id="contact" eyebrow="contact" title="Let's talk">
+    <Section id="contact" eyebrow="contact" title="Let's Talk">
       <Reveal>
         <p className="max-w-xl text-lg leading-relaxed text-muted">
           Have a lending, payments or document-automation problem? I&apos;d like to hear about it.
