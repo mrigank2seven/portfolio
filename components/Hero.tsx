@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, Download, MapPin } from "lucide-react";
 import { profile } from "@/content/site";
+import Highlight from "./Highlight";
 
 const terminalLines = [
   { prompt: true, text: "whoami" },
@@ -28,7 +29,7 @@ export default function Hero() {
             Building scalable{" "}
             <span className="text-accent">fintech backends.</span>
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">{profile.tagline}</p>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted"><Highlight text={profile.tagline} /></p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <a
               href={profile.resume}

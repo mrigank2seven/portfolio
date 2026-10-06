@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import Image from "next/image";
 import { aboutStats, profile } from "@/content/site";
+import Highlight from "./Highlight";
 import { Reveal, Section } from "./ui";
 
 export default function About() {
@@ -29,7 +30,7 @@ export default function About() {
           )}
         </Reveal>
         <Reveal delay={0.1}>
-          <p className="text-lg leading-relaxed text-muted">{profile.summary}</p>
+          <p className="text-lg leading-relaxed text-muted"><Highlight text={profile.summary} /></p>
         </Reveal>
       </div>
 

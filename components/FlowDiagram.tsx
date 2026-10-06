@@ -3,6 +3,7 @@
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { useRef, useState } from "react";
 import type { Diagram } from "@/content/site";
+import Highlight from "./Highlight";
 
 const NODE_W = 132;
 const NODE_H = 40;
@@ -98,7 +99,7 @@ export default function FlowDiagram({ diagram }: { diagram: Diagram }) {
 
       <div className="mt-4 rounded-lg border border-line bg-surface p-4" aria-live="polite">
         <p className="font-mono text-sm text-accent">{active.label}</p>
-        <p className="mt-1 text-sm text-muted">{active.desc}</p>
+        <p className="mt-1 text-sm text-muted"><Highlight text={active.desc} /></p>
       </div>
     </div>
   );

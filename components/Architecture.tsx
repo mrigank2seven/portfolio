@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import { diagrams } from "@/content/site";
+import Highlight from "./Highlight";
 import { Section } from "./ui";
 
 const FlowDiagram = dynamic(() => import("./FlowDiagram"), {
@@ -43,7 +44,7 @@ export default function Architecture() {
         className="mt-6 rounded-xl border border-line bg-surface/60 p-4 sm:p-6"
       >
         <h3 className="font-semibold">{active.title}</h3>
-        <p className="mt-1 text-sm text-muted">{active.summary}</p>
+        <p className="mt-1 text-sm text-muted"><Highlight text={active.summary} /></p>
         <div className="mt-4">
           <FlowDiagram key={active.id} diagram={active} />
         </div>

@@ -1,4 +1,5 @@
 import { projects } from "@/content/site";
+import Highlight from "./Highlight";
 import { Reveal, Section } from "./ui";
 
 export default function Projects() {
@@ -15,7 +16,7 @@ export default function Projects() {
                   </p>
                 )}
                 <h3 className="font-semibold">{p.title}</h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{p.blurb}</p>
+                <p className="mt-2 flex-1 text-sm leading-relaxed text-muted"><Highlight text={p.blurb} /></p>
                 <ul className="mt-4 flex flex-wrap gap-1.5">
                   {p.tags.map((t) => (
                     <li

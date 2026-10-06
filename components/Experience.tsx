@@ -1,4 +1,5 @@
 import { experience } from "@/content/site";
+import Highlight from "./Highlight";
 import { Reveal, Section } from "./ui";
 
 export default function Experience() {
@@ -29,7 +30,7 @@ export default function Experience() {
                 {g.points.map((p) => (
                   <li key={p} className="flex gap-3">
                     <span aria-hidden className="mt-2 size-1 shrink-0 rounded-full bg-muted" />
-                    <span>{p}</span>
+                    <span><Highlight text={p} /></span>
                   </li>
                 ))}
               </ul>
