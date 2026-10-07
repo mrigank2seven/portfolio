@@ -301,7 +301,7 @@ export const impact: Stat[] = [
   { value: "7", label: "Django services with TOTP admin auth" },
   { value: "5 → 1", label: "Data sources (ERP, ledgers, sales, CIBIL, GSTIN) reduced to one lending decision" },
   { value: "3", label: "Document formats (PDF, JPEG, PNG) covered by Aadhaar masking" },
-  { value: "₹250 Cr+", label: "Annual AUM Impact" },
+  { value: "₹65 Cr+", label: "Annual AUM Impact" },
   { value: "99%", label: "System Availability" },
   { value: "90%+", label: "Tickets Closed Within SLA" },
   { value: "TODO", label: "Payment or processing turnaround improvement", todo: true },
