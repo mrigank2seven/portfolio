@@ -40,6 +40,27 @@
   --font-mono: var(--font-geist-mono);
 }
 
+@theme {
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-bob: bob 3.6s ease-in-out infinite;
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes bob {
+    0%,
+    100% {
+      transform: translateY(-14px);
+    }
+    50% {
+      transform: translateY(14px);
+    }
+  }
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;

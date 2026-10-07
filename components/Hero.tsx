@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, Download } from "lucide-react";
 import { profile } from "@/content/site";
 import Highlight from "./Highlight";
+import LogoMarquee from "./LogoMarquee";
 import ParticleCanvas from "./ParticleCanvas";
 
 export default function Hero() {
@@ -15,9 +16,9 @@ export default function Hero() {
   });
 
   return (
-    <section className="relative overflow-hidden border-b border-line">
+    <section className="relative flex min-h-[calc(100svh-3.5rem)] flex-col overflow-hidden border-b border-line">
       <ParticleCanvas />
-      <div className="relative z-10 mx-auto flex min-h-[calc(100svh-3.5rem)] max-w-4xl flex-col items-center justify-center px-4 py-20 text-center sm:px-6">
+      <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-1 flex-col items-center justify-center px-4 pb-8 pt-20 text-center sm:px-6">
         <motion.h1
           {...fadeUp(0.1)}
           className="text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl"
@@ -62,6 +63,9 @@ export default function Hero() {
           {profile.availability}
         </motion.p>
       </div>
+      <motion.div {...fadeUp(0.5)} className="relative z-10">
+        <LogoMarquee />
+      </motion.div>
     </section>
   );
 }

@@ -17,6 +17,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import {
+  siBitbucket,
   siCelery,
   siDjango,
   siDocker,
@@ -50,6 +51,7 @@ const BRANDS: Record<string, Brand> = {
   Redis: { icon: siRedis },
   Docker: { icon: siDocker },
   Git: { icon: siGit },
+  Bitbucket: { icon: siBitbucket, color: "#2684FF" },
   Jira: { icon: siJira, color: "#2684FF" },
   Postman: { icon: siPostman },
   LangChain: { icon: siLangchain },
