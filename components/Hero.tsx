@@ -1,88 +1,66 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowDown, Download, MapPin } from "lucide-react";
+import { ArrowDown, Download } from "lucide-react";
 import { profile } from "@/content/site";
 import Highlight from "./Highlight";
-
-const terminalLines = [
-  { prompt: true, text: "whoami" },
-  { prompt: false, text: `${profile.name.toLowerCase()}, ${profile.role.toLowerCase()} @ ${profile.company.toLowerCase()}` },
-  { prompt: true, text: "cat stack.txt" },
-  { prompt: false, text: "python · django · drf · celery · postgres · aws" },
-  { prompt: true, text: "ls impact/" },
-  { prompt: false, text: "ocr-llm-pipeline  loan-eligibility  totp-auth  pg-tuning" },
-];
+import ParticleCanvas from "./ParticleCanvas";
 
 export default function Hero() {
   const reduce = useReducedMotion();
+  const fadeUp = (delay: number) => ({
+    initial: reduce ? false : { opacity: 0, y: 12 },
+    animate: { opacity: 1, y: 0 },
+    transition: { delay, duration: 0.5, ease: "easeOut" as const },
+  });
 
   return (
     <section className="relative overflow-hidden border-b border-line">
-      <div className="relative mx-auto grid max-w-5xl gap-12 px-4 py-20 sm:px-6 sm:py-28 lg:grid-cols-[1.1fr_1fr] lg:items-center">
-        <div>
-          <div className="flex flex-wrap items-center gap-2">
-            <p className="inline-flex items-center gap-1.5 rounded-full border border-line bg-surface px-3 py-1 font-mono text-xs text-muted">
-              <MapPin className="size-3.5 text-accent" />
-              {profile.location}
-            </p>
-            <p className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-surface px-3 py-1 font-mono text-xs text-fg">
-              <span className="relative flex size-2">
-                <span className="absolute inline-flex size-full animate-ping rounded-full bg-green-400 opacity-60 motion-reduce:animate-none" />
-                <span className="relative inline-flex size-2 rounded-full bg-green-400" />
-              </span>
-              {profile.availability}
-            </p>
-          </div>
-          <h1 className="mt-6 text-4xl font-semibold leading-[1.1] tracking-tight sm:text-6xl">
-            Building scalable{" "}
-            <span className="text-accent">fintech backends.</span>
-          </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted"><Highlight text={profile.tagline} /></p>
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <a
-              href={profile.resume}
-              download
-              className="inline-flex items-center gap-2 rounded-md bg-accent px-4 py-2.5 text-sm font-medium text-accent-fg transition-opacity hover:opacity-90"
-            >
-              <Download className="size-4" />
-              Download resume
-            </a>
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 rounded-md border border-line px-4 py-2.5 text-sm font-medium transition-colors hover:border-accent"
-            >
-              Get in touch
-              <ArrowDown className="size-4" />
-            </a>
-          </div>
-        </div>
-
-        <div
-          className="rounded-xl border border-line bg-surface/80 shadow-2xl backdrop-blur"
-          aria-label="Terminal summary"
+      <ParticleCanvas />
+      <div className="relative z-10 mx-auto flex min-h-[calc(100svh-3.5rem)] max-w-4xl flex-col items-center justify-center px-4 py-20 text-center sm:px-6">
+        <motion.h1
+          {...fadeUp(0.1)}
+          className="text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl"
         >
-          <div className="flex items-center gap-1.5 border-b border-line px-4 py-3">
-            <span className="size-2.5 rounded-full bg-red-400/70" />
-            <span className="size-2.5 rounded-full bg-yellow-400/70" />
-            <span className="size-2.5 rounded-full bg-green-400/70" />
-            <span className="ml-3 font-mono text-xs text-muted">~/mrigank</span>
-          </div>
-          <div className="space-y-1.5 p-4 font-mono text-[13px] leading-relaxed">
-            {terminalLines.map((line, i) => (
-              <motion.p
-                key={i}
-                initial={reduce ? false : { opacity: 0, x: -6 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4 + i * 0.35, duration: 0.3 }}
-                className={line.prompt ? "text-fg" : "pl-4 text-muted"}
-              >
-                {line.prompt && <span className="mr-2 text-accent">$</span>}
-                {line.text}
-              </motion.p>
-            ))}
-          </div>
-        </div>
+          Building scalable{" "}
+          <span className="text-accent">fintech backends.</span>
+        </motion.h1>
+        <motion.p
+          {...fadeUp(0.2)}
+          className="mt-6 max-w-xl text-lg leading-relaxed text-muted"
+        >
+          <Highlight text={profile.tagline} />
+        </motion.p>
+        <motion.div
+          {...fadeUp(0.3)}
+          className="mt-10 flex flex-wrap items-center justify-center gap-3"
+        >
+          <a
+            href={profile.resume}
+            download
+            className="inline-flex items-center gap-2 rounded-full bg-cta px-8 py-3.5 font-medium text-cta-fg shadow-sm transition-transform hover:scale-105 hover:shadow-lg"
+          >
+            <Download className="size-4" />
+            Download resume
+          </a>
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 rounded-full border border-line bg-bg/60 px-8 py-3.5 font-medium backdrop-blur transition-colors hover:border-fg"
+          >
+            Get in touch
+            <ArrowDown className="size-4" />
+          </a>
+        </motion.div>
+        <motion.p
+          {...fadeUp(0.4)}
+          className="mt-8 inline-flex items-center gap-2 font-mono text-xs text-muted"
+        >
+          <span className="relative flex size-2">
+            <span className="absolute inline-flex size-full animate-ping rounded-full bg-green-400 opacity-60 motion-reduce:animate-none" />
+            <span className="relative inline-flex size-2 rounded-full bg-green-400" />
+          </span>
+          {profile.availability}
+        </motion.p>
       </div>
     </section>
   );
