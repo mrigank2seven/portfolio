@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import CommandPalette from "@/components/CommandPalette";
 import Nav from "@/components/Nav";
 import { PaletteProvider } from "@/components/PaletteContext";
+import ServiceWorkerRegister from "@/components/ServiceWorkerRegister";
 import { profile } from "@/content/site";
 import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
@@ -24,6 +25,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: pageTitle,
   description: profile.tagline,
+  appleWebApp: {
+    capable: true,
+    title: profile.name,
+    statusBarStyle: "black-translucent",
+  },
   openGraph: {
     type: "website",
     siteName: profile.name,
@@ -36,6 +42,10 @@ export const metadata: Metadata = {
     title: pageTitle,
     description: profile.tagline,
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0a0b0d",
 };
 
 const themeScript = `try{if(localStorage.getItem("theme")==="light")document.documentElement.classList.add("light")}catch(e){}`;
@@ -62,6 +72,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Nav />
           <CommandPalette />
         </PaletteProvider>
+        <ServiceWorkerRegister />
         <main id="main">{children}</main>
         <footer className="border-t border-line py-8 text-center font-mono text-xs text-muted">
           © {new Date().getFullYear()} {profile.name}. Press{" "}
