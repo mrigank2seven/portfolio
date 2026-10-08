@@ -4,6 +4,7 @@ import { Download, Menu, Search, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { navSections, profile } from "@/content/site";
+import InstallButton from "./InstallButton";
 import { usePalette } from "./PaletteContext";
 import ThemeToggle from "./ThemeToggle";
 
@@ -44,6 +45,7 @@ export default function Nav() {
             Search
             <kbd className="font-mono">⌘K</kbd>
           </button>
+          <InstallButton />
           <ThemeToggle />
           <a
             href={profile.resume}
